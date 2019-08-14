@@ -1,0 +1,10 @@
+{
+  "name": "Codedit",
+  "short_name": "Coededit",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#3CC1E5",
+  "background_color": "#3CC1E5",
+  "scope": "/"
+}

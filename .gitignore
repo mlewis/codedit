@@ -1,0 +1,25 @@
+# APP
+node_modules
+dist/
+data/
+uploads/
+stats.json
+sw.js
+config.local.js
+# Other
+process.yml
+*.lock
+*.log
+*.db
+*.tgz
+.idea
+.DS_Store
+*.map
+.sass-cache/*
+.TemporaryItems/*
+.vscode
+.next/
+storybook-static/
+coverage*
+package-lock.json
+bundles/
