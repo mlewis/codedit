@@ -2,7 +2,7 @@ import 'isomorphic-unfetch';
 
 const apiUrl = process.env.API_URL;
 
-const buildRequestUrl = (path: string, data: any = null) => {
+const buildRequestUrl = (path: string, data: any = null): string => {
   let requestUrl = path.includes('?format=json') ? `${apiUrl}${path}`
     : `${apiUrl}${path}?format=json`;
   if (data) {
@@ -14,7 +14,7 @@ const buildRequestUrl = (path: string, data: any = null) => {
   return requestUrl;
 };
 
-async function makeFetchRequest(path: string, data: object | null = null, headers: object = {}) {
+const makeFetchRequest = async (path: string, data: object | null = null, headers: object = {}): Promise<{}> => {
   const defaultHeaders = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ async function makeFetchRequest(path: string, data: object | null = null, header
   return Promise.resolve(null);
 }
 
-async function makePostRequest(path: string, data: object | null = null, headers: object = {}) {
+const makePostRequest = async (path: string, data: object | null = null, headers: object = {}): Promise<{}> => {
   const postHeaders = {
     Accept: 'application/json',
     'Content-Type': 'application/json',

@@ -20,4 +20,3 @@ module.exports = withOffline({
     return config;
   },
 });
-
