@@ -76,7 +76,7 @@ const Login: React.FC = (): ReactElement => {
               :
               <form onSubmit={handleSubmit}>
                 {formFields.map((field: FormField) => (
-                  <InputWrapper>
+                  <InputWrapper key={`form-field-${field.name}`}>
                     {getErrorDetailsForField(field.name, errors, touched)}
                     <Input
                       name={field.name}

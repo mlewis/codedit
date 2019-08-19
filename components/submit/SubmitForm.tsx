@@ -63,7 +63,7 @@ const SubmitForm: React.FC = (): React.ReactElement => (
       return (
         <form onSubmit={handleSubmit}>
           {formFields.map((field: FormField) => (
-            <InputWrapper>
+            <InputWrapper key={`form-field-${field.name}`}>
               {getErrorDetailsForField(field.name, errors, touched)}
               <Input
                 name={field.name}
