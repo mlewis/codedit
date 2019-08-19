@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 type Props = {
   /** The function that is called when the user clicks the button. */
-  onClick: () => void,
+  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
   /** The contents of this button. */
-  children: React.ReactNode,
+  children: React.ReactNode | string,
   /** Whether or not this button is disabled */
   disabled?: boolean,
   /** Whether or not to display a button with alternate styling */
@@ -26,7 +26,14 @@ type Props = {
  * </Button>
  *```
  */
-const Button = ({ onClick, children, disabled = false, alternate = false, type = 'button', className = '' }: Props) => (
+const Button: React.FC = ({
+  onClick,
+  children,
+  disabled = false,
+  alternate = false,
+  type = 'button',
+  className = ''
+}: Props): React.ReactElement => (
   <StyledButton
     onClick={onClick}
     alternate={alternate}
@@ -38,14 +45,7 @@ const Button = ({ onClick, children, disabled = false, alternate = false, type =
   </StyledButton>
 );
 
-Button.defaultProps = {
-  disabled: false,
-  alternate: false,
-  type: 'button',
-  className: '',
-};
-
-const StyledButton = styled.button<{ alternate?: boolean }>`
+const StyledButton = styled.button<{ alternate?: boolean, disabled?: boolean }>`
   background-color: ${props => props.alternate ? 'transparent' : props.theme.colors.secondary};
   color: ${props => props.alternate ? props.theme.colors.textColor : props.theme.colors.white};
   font-size: 18px;

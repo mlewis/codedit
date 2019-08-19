@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
+import Button from '../form/Button';
 import Input from '../form/Input';
-import console = require('console');
 
 const initialValues = {
   title: '',
@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
   code: Yup.string().required('Required'),
 });
 
-const SubmitForm = () => (
+const SubmitForm: React.FC = (): React.ReactElement => (
   <Formik
     initialValues={initialValues}
     onSubmit={async (values, { setSubmitting}) => {
@@ -64,6 +64,7 @@ const SubmitForm = () => (
               placeholder="Language"
             />
           </InputWrapper>
+          <Button disabled={isSubmitting} type="submit" onClick={handleSubmit}>Submit</Button>
         </form>
       )
     }}

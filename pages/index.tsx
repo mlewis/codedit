@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { H1 } from '../components/common/Headers';
 
-const Index = () => (
+const Index: React.FC = (): React.ReactElement => (
   <div>
     <Head>
       <title>Codedit</title>

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Button from '../components/form/Button';
-import { mountWithTheme } from '../utils/test-utils';
+import Button from '../../../components/form/Button';
+import { mountWithTheme } from '../../../utils/test-utils';
 
 describe('Button', () => {
   it('renders without error', () => {

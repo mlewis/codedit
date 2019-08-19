@@ -34,7 +34,7 @@ const makeFetchRequest = async (path: string, data: object | null = null, header
   return Promise.resolve(null);
 }
 
-const makePostRequest = async (path: string, data: object | null = null, headers: object = {}): Promise<{}> => {
+const makePostRequest = async (path: string, data: object | null = null, headers: object = {}): Promise<any> => {
   const postHeaders = {
     Accept: 'application/json',
     'Content-Type': 'application/json',

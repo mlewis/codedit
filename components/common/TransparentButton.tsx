@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 type Props = {
   /** The function that is called when the user clicks the button. */
-  onClick: () => void,
+  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
   /** The contents of this button. */
   children: React.ReactNode,
   /** The type of button. */
@@ -23,7 +23,12 @@ type Props = {
  * </TransparentButton>
  *```
  */
-const TransparentButton = ({ onClick, children, type='button', className = '' }: Props) => (
+const TransparentButton: React.FC<Props> = ({
+  onClick,
+  children,
+  type='button',
+  className = ''
+}: Props): React.ReactElement => (
   <StyledButton
     onClick={onClick}
     type={type}
@@ -32,10 +37,6 @@ const TransparentButton = ({ onClick, children, type='button', className = '' }:
     {children}
   </StyledButton>
 );
-
-TransparentButton.defaultProps = {
-  className: '',
-};
 
 const StyledButton = styled.button`
   background-color: transparent;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Layout = ({ children }) => (
+const Layout: React.FC = ({ children }): React.ReactElement => (
   <Wrapper>{children}</Wrapper>
 );
 

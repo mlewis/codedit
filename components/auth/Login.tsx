@@ -1,7 +1,7 @@
 import React, { useState, ReactElement } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { Formik } from 'formik';
+import { Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 
 import Button from '../form/Button';
@@ -10,6 +10,11 @@ import Input from '../form/Input';
 import { makePostRequest } from '../../utils/API';
 import { saveItem } from '../../utils/storage';
 import TransparentButton from '../common/TransparentButton';
+
+type FormValues = {
+  email: string,
+  password: string,
+};
 
 const initialValues = {
   email: '',
@@ -43,7 +48,7 @@ const Login: React.FC = (): ReactElement => {
         }}
         validationSchema={validationSchema}
       >
-        {(props) => {
+        {(props: FormikProps<FormValues>): React.ReactElement => {
           const {
             values,
             touched,
@@ -58,7 +63,7 @@ const Login: React.FC = (): ReactElement => {
                 <div>
                   You are now logged in.
                   <p>
-                    <TransparentButton type="button" onClick={() => { router.back(); }}>Go back</TransparentButton>
+                    <TransparentButton type="button" onClick={(): void => { router.back(); }}>Go back</TransparentButton>
                   </p>
                 </div>
               :

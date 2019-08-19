@@ -23,7 +23,11 @@ type Props = {
  * />
  *```
  */
-const Textarea = ({ onChange, value, name }: Props) => (
+const Textarea: React.FC<Props> = ({
+  onChange,
+  value,
+  name
+}: Props): React.ReactElement => (
   <StyledTextarea
     onChange={onChange}
     value={value}

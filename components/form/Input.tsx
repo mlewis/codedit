@@ -29,7 +29,14 @@ type Props = {
  * />
  *```
  */
-const Input = ({ onChange, value, name, placeholder = '', type = 'text', className = '' }: Props) => (
+const Input: React.FC<Props> = ({
+  onChange,
+  value,
+  name,
+  placeholder = '',
+  type = 'text',
+  className = ''
+}: Props): React.ReactElement => (
   <StyledInput
     onChange={onChange}
     value={value}
@@ -40,12 +47,6 @@ const Input = ({ onChange, value, name, placeholder = '', type = 'text', classNa
     className={className}
   />
 );
-
-Input.defaultProps = {
-  type: 'text',
-  placeholder: '',
-  className: '',
-};
 
 const StyledInput = styled.input`
   width: 100%;

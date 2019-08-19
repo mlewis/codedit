@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Layout from '../components/common/Layout';
+import Layout from '../../../components/common/Layout';
 
 describe('Layout', () => {
   it('renders without error', () => {
