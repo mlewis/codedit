@@ -14,7 +14,7 @@ const buildRequestUrl = (path: string, data: any = null): string => {
   return requestUrl;
 };
 
-const makeFetchRequest = async (path: string, data: object | null = null, headers: object = {}): Promise<{}> => {
+const makeFetchRequest = async (path: string, data: object | null = null, headers: object = {}): Promise<any> => {
   const defaultHeaders = {
     Accept: 'application/json',
     'Content-Type': 'application/json',

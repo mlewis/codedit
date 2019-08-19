@@ -27,7 +27,7 @@ const Textarea: React.FC<Props> = ({
   onChange,
   value,
   name
-}: Props): React.ReactElement => (
+}): React.ReactElement => (
   <StyledTextarea
     onChange={onChange}
     value={value}

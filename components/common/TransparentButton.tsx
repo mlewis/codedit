@@ -8,7 +8,7 @@ type Props = {
   children: React.ReactNode,
   /** The type of button. */
   type: 'button' | 'submit' | 'reset',
-  /** Used solely for styled-components calls. */
+  /** Optional className passed automatically by styled-components */
   className?: string,
 };
 
@@ -28,7 +28,7 @@ const TransparentButton: React.FC<Props> = ({
   children,
   type='button',
   className = ''
-}: Props): React.ReactElement => (
+}): React.ReactElement => (
   <StyledButton
     onClick={onClick}
     type={type}

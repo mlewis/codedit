@@ -5,26 +5,33 @@ import { Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 
 import Button from '../form/Button';
+import { FormField } from '../../interfaces';
+import { getFormFieldDetails, getErrorDetailsForField } from '../../utils/form-utils';
 import { H2 } from '../common/Headers';
 import Input from '../form/Input';
 import { makePostRequest } from '../../utils/API';
 import { saveItem } from '../../utils/storage';
 import TransparentButton from '../common/TransparentButton';
 
-type FormValues = {
-  email: string,
-  password: string,
-};
+const formFields: Array<FormField> = [
+  {
+    name: 'email',
+    type: 'email',
+    initialValue: '',
+    required: true,
+    placeholder: 'Email Address',
+  },
+  {
+    name: 'password',
+    type: 'password',
+    initialValue: '',
+    required: true,
+    placeholder: 'Password',
+  },
+];
 
-const initialValues = {
-  email: '',
-  password: '',
-};
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email().required('Required'),
-  password: Yup.string().required('Required'),
-});
+const { shape, initialValues } = getFormFieldDetails(formFields);
+type FormValues = Yup.InferType<typeof shape>;
 
 const Login: React.FC = (): ReactElement => {
   const router = useRouter();
@@ -46,7 +53,7 @@ const Login: React.FC = (): ReactElement => {
           }
           setSubmitting(false);
         }}
-        validationSchema={validationSchema}
+        validationSchema={shape}
       >
         {(props: FormikProps<FormValues>): React.ReactElement => {
           const {
@@ -68,30 +75,18 @@ const Login: React.FC = (): ReactElement => {
                 </div>
               :
               <form onSubmit={handleSubmit}>
-                <InputWrapper>
-                  {errors.email && touched.email &&
-                    <Error>{errors.email}</Error>
-                  }
-                  <Input
-                    name="email"
-                    type="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    placeholder="Email Address"
-                  />
-                </InputWrapper>
-                <InputWrapper>
-                  {errors.password && touched.password &&
-                    <Error>{errors.password}</Error>
-                  }
-                  <Input
-                    name="password"
-                    type="password"
-                    value={values.password}
-                    onChange={handleChange}
-                    placeholder="Password"
-                  />
-                </InputWrapper>
+                {formFields.map((field: FormField) => (
+                  <InputWrapper>
+                    {getErrorDetailsForField(field.name, errors, touched)}
+                    <Input
+                      name={field.name}
+                      type={field.type}
+                      value={values[field.name]}
+                      onChange={handleChange}
+                      placeholder={field.placeholder}
+                    />
+                  </InputWrapper>
+                ))}
                 <Button disabled={isSubmitting} onClick={handleSubmit} type="submit">Login</Button>
               </form>
             }
@@ -104,9 +99,5 @@ const Login: React.FC = (): ReactElement => {
 }
 
 const InputWrapper = styled.div``;
-
-const Error = styled.div`
-  color: red;
-`;
 
 export default Login;

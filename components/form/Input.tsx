@@ -9,9 +9,10 @@ type Props = {
   /** The input name that is also used as the id. */
   name: string,
   /** The type of input (text, email, etc.) */
-  type?: string,
+  type?: 'text' | 'email' | 'password' | 'tel',
   /** The optional placeholder text */
   placeholder?: string,
+  /** Optional className passed automatically by styled-components */
   className?: string,
 };
 
@@ -36,7 +37,7 @@ const Input: React.FC<Props> = ({
   placeholder = '',
   type = 'text',
   className = ''
-}: Props): React.ReactElement => (
+}): React.ReactElement => (
   <StyledInput
     onChange={onChange}
     value={value}

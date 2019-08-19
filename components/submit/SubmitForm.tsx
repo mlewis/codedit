@@ -1,24 +1,46 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Formik } from 'formik';
+import { Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 
 import Button from '../form/Button';
+import { FormField } from '../../interfaces';
+import { getFormFieldDetails, getErrorDetailsForField } from '../../utils/form-utils';
 import Input from '../form/Input';
 
-const initialValues = {
-  title: '',
-  language: '',
-  description: '',
-  code: '',
-};
+const formFields: Array<FormField> = [
+  {
+    name: 'title',
+    type: 'text',
+    initialValue: '',
+    required: true,
+    placeholder: 'Title',
+  },
+  {
+    name: 'language',
+    type: 'text',
+    initialValue: '',
+    required: true,
+    placeholder: 'Language',
+  },
+  {
+    name: 'description',
+    type: 'text',
+    initialValue: '',
+    required: false,
+    placeholder: 'Description',
+  },
+  {
+    name: 'code',
+    type: 'text',
+    initialValue: '',
+    required: true,
+    placeholder: 'Code',
+  },
+];
 
-const validationSchema = Yup.object().shape({
-  title: Yup.string().required('Required'),
-  landguage: Yup.string().required('Required'),
-  description: Yup.string(),
-  code: Yup.string().required('Required'),
-});
+const { shape, initialValues } = getFormFieldDetails(formFields);
+type FormValues = Yup.InferType<typeof shape>;
 
 const SubmitForm: React.FC = (): React.ReactElement => (
   <Formik
@@ -27,9 +49,9 @@ const SubmitForm: React.FC = (): React.ReactElement => (
       console.log(values);
       setSubmitting(false);
     }}
-    validationSchema={validationSchema}
+    validationSchema={shape}
   >
-    {(props) => {
+    {(props: FormikProps<FormValues>) => {
       const {
         values,
         touched,
@@ -40,40 +62,24 @@ const SubmitForm: React.FC = (): React.ReactElement => (
       } = props;
       return (
         <form onSubmit={handleSubmit}>
-          <InputWrapper>
-            {errors.title && touched.title &&
-              <Error>{errors.title}</Error>
-            }
-            <Input
-              name="title"
-              type="text"
-              value={values.title}
-              onChange={handleChange}
-              placeholder="Title"
-            />
-          </InputWrapper>
-          <InputWrapper>
-            {errors.language && touched.language &&
-              <Error>{errors.language}</Error>
-            }
-            <Input
-              name="language"
-              type="text"
-              value={values.language}
-              onChange={handleChange}
-              placeholder="Language"
-            />
-          </InputWrapper>
+          {formFields.map((field: FormField) => (
+            <InputWrapper>
+              {getErrorDetailsForField(field.name, errors, touched)}
+              <Input
+                name={field.name}
+                type={field.type}
+                value={values[field.name]}
+                onChange={handleChange}
+                placeholder={field.placeholder}
+              />
+            </InputWrapper>
+          ))}
           <Button disabled={isSubmitting} type="submit" onClick={handleSubmit}>Submit</Button>
         </form>
       )
     }}
   </Formik>
 );
-
-const Error = styled.div`
-    color: red;
-`;
 
 const InputWrapper = styled.div``;
 

@@ -12,6 +12,7 @@ type Props = {
   alternate?: boolean,
   /** What type of button this is. Submit or Button for examples */
   type?: 'button' | 'submit' | 'reset',
+  /** Optional className passed automatically by styled-components */
   className?: string,
 };
 
@@ -26,14 +27,14 @@ type Props = {
  * </Button>
  *```
  */
-const Button: React.FC = ({
+const Button: React.FC<Props> = ({
   onClick,
   children,
   disabled = false,
   alternate = false,
   type = 'button',
   className = ''
-}: Props): React.ReactElement => (
+}): React.ReactElement => (
   <StyledButton
     onClick={onClick}
     alternate={alternate}
