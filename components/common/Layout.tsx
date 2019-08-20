@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Navigation from '../navigation/Navigation';
+
 type Props = {
   children: React.ReactNode,
 };
 
 const Layout: React.FC<Props> = ({ children }): React.ReactElement => (
-  <Wrapper>{children}</Wrapper>
+  <Wrapper>
+    {children}
+    <Navigation />
+  </Wrapper>
 );
 
 const Wrapper = styled.div`

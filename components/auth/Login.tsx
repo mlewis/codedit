@@ -87,7 +87,7 @@ const Login: React.FC = (): ReactElement => {
                     />
                   </InputWrapper>
                 ))}
-                <Button disabled={isSubmitting} onClick={handleSubmit} type="submit">Login</Button>
+                <Button disabled={isSubmitting} onClick={() => { handleSubmit(); }} type="submit">Login</Button>
               </form>
             }
             </div>
