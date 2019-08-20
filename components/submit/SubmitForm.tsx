@@ -74,7 +74,7 @@ const SubmitForm: React.FC = (): React.ReactElement => (
               />
             </InputWrapper>
           ))}
-          <Button disabled={isSubmitting} type="submit" onClick={handleSubmit}>Submit</Button>
+          <Button disabled={isSubmitting} type="submit" onClick={() => { handleSubmit(); }}>Submit</Button>
         </form>
       )
     }}
