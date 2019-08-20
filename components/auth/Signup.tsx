@@ -33,17 +33,17 @@ const formFields: Array<FormField> = [
 const { shape, initialValues } = getFormFieldDetails(formFields);
 type FormValues = Yup.InferType<typeof shape>;
 
-const Login: React.FC = (): ReactElement => {
+const Signup: React.FC = (): ReactElement => {
   const router = useRouter();
   const [loginSuccess, setLoginSuccess] = useState(false);
 
   return (
     <div>
-      <H2>Login</H2>
+      <H2>Sign Up</H2>
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, { setSubmitting}): Promise<void> => {
-          const response = await makePostRequest('login', {
+          const response = await makePostRequest('register', {
             email: values.email,
             password: values.password,
           });
@@ -87,7 +87,7 @@ const Login: React.FC = (): ReactElement => {
                     />
                   </InputWrapper>
                 ))}
-                <Button disabled={isSubmitting} onClick={() => { handleSubmit(); }} type="submit">Login</Button>
+                <Button disabled={isSubmitting} onClick={() => { handleSubmit(); }} type="submit">Sign Up</Button>
               </form>
             }
             </FormWrapper>
@@ -99,11 +99,11 @@ const Login: React.FC = (): ReactElement => {
 }
 
 const InputWrapper = styled.div`
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 `;
 
 const FormWrapper = styled.div`
   margin-top: 20px;
 `;
 
-export default Login;
+export default Signup;
