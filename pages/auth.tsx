@@ -9,7 +9,7 @@ import TransparentButton from '../components/common/TransparentButton';
 const Auth = () => {
   const [showSignUp, setShowSignUp] = useState(false);
   return (
-    <Page>
+    <Page title="Login or Sign up">
       {showSignUp ?
         <>
           <Signup />

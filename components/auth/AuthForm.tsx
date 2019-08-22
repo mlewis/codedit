@@ -13,7 +13,7 @@ import TransparentButton from '../common/TransparentButton';
 type Props = {
   submitCallback: (values: FormikValues) => void,
   formFields: Array<FormField>,
-}
+};
 
 const AuthForm: React.FC<Props> = ({ submitCallback, formFields }): React.ReactElement => {
   const router = useRouter();
